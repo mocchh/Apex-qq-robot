@@ -11,6 +11,7 @@ import json
 map = on_keyword(['map','MAP'],priority=50)
 @map.handle()
 async def map_handle(bot: Bot, event: Event):
+  await map.send("查询地图轮换中,请稍后",at_sender=True)
 
   URL = f"https://api.mozambiquehe.re/maprotation?auth=979d0a73104cc447ebf3cd264030a319"
   res = requests.get(URL)
@@ -26,7 +27,5 @@ async def map_handle(bot: Bot, event: Event):
   rankname = "开始于：" + prankname
 
   info=(name,level,rankscore,rankname)
-
-
 
   await map.send('\n'.join(info))  
